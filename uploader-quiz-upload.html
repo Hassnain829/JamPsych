@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Upload New Quiz — JamPsych Uploader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo-circle"><img src="assets/images/jampsych-logo.png" alt="JamPsych LMS"></div>
+      <div class="brand-name">JamPsych LMS</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="nav-item" href="uploader-dashboard.html"><i class="fa-solid fa-chart-simple"></i> Dashboard</a>
+      <a class="nav-item active" href="uploader-quizzes.html"><i class="fa-regular fa-file-lines"></i> Quizzes</a>
+      <a class="nav-item" href="uploader-submissions.html"><i class="fa-solid fa-upload"></i> Submissions</a>
+
+      <div class="sidebar-divider"><span>Coming Soon</span></div>
+
+      <a class="nav-item" href="#"><i class="fa-solid fa-book-open"></i> Courses</a>
+      <a class="nav-item" href="#"><i class="fa-solid fa-chalkboard-user"></i> Workshops</a>
+      <a class="nav-item" href="#"><i class="fa-regular fa-folder-open"></i> Materials</a>
+      <a class="nav-item" href="#"><i class="fa-regular fa-user"></i> Profile</a>
+      <a class="nav-item" href="#"><i class="fa-solid fa-gear"></i> Settings</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a class="nav-item" href="#" data-action="logout" data-silent><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+    </div>
+  </aside>
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <!-- ============ MAIN ============ -->
+  <div class="main">
+
+    <header class="topbar">
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+
+      <div class="search-bar">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="globalSearch" placeholder="Search anything...">
+      </div>
+
+      <div class="topbar-actions">
+        <div class="profile-menu">
+          <button class="icon-btn" data-dropdown="notifPanel" aria-label="Notifications">
+            <i class="fa-regular fa-bell"></i><span class="badge">3</span>
+          </button>
+          <div class="dropdown-panel wide" id="notifPanel">
+            <div class="dd-title">Notifications</div>
+            <a class="dd-item" href="#" data-silent><i class="fa-solid fa-upload"></i><div><span class="t">New submission received</span><span class="s">John Smith · The Science of Self-Compassion Quiz</span></div></a>
+            <a class="dd-item" href="#" data-silent><i class="fa-solid fa-circle-check"></i><div><span class="t">Quiz published</span><span class="s">"Crisis Management in Schools Quiz" is now live</span></div></a>
+            <div class="dd-footer">View all notifications</div>
+          </div>
+        </div>
+
+
+        <div class="profile-menu">
+          <button class="profile-trigger stacked" data-role="uploader" data-dropdown="profilePanel">
+            <span class="avatar-circle">KP</span>
+            <span class="ptext">
+              <span class="pname">Kerri-Ann Peart</span>
+              <span class="prole">Uploader</span>
+            </span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="dropdown-panel" id="profilePanel">
+            <a class="dd-item" href="#" data-silent><i class="fa-regular fa-user"></i><div><span class="t">My profile</span></div></a>
+            <a class="dd-item" href="#" data-silent><i class="fa-solid fa-gear"></i><div><span class="t">Account settings</span></div></a>
+            <a class="dd-item" href="#" data-action="logout" data-silent><i class="fa-solid fa-right-from-bracket"></i><div><span class="t">Logout</span></div></a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-content page-content--full">
+
+      <div class="breadcrumb-nav">
+        <a href="uploader-quizzes.html">Quizzes</a>
+        <i class="fa-solid fa-chevron-right"></i>
+        <span class="current">Upload New Quiz</span>
+      </div>
+
+      <div class="page-head">
+        <div>
+          <h1>Upload New Quiz</h1>
+          <p>Upload a quiz (Word document) that will be available for students to download.</p>
+        </div>
+      </div>
+
+      <form id="quizUploadForm" class="form-page form-page--full" novalidate>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="quizTitle">Quiz Title <span class="req">*</span></label>
+            <input type="text" id="quizTitle" placeholder="Enter quiz title">
+            <span class="field-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="quizCourse">Select Course <span class="req">*</span></label>
+            <select id="quizCourse">
+              <option value="">Select course</option>
+              <option>The Science of Self-Compassion</option>
+              <option>Developing a Growth Mindset</option>
+              <option>Crisis Management in Schools</option>
+              <option>Overcoming Procrastination</option>
+              <option>The Power of Gratitude</option>
+            </select>
+            <span class="field-error"></span>
+          </div>
+        </div>
+
+        <div class="form-group full">
+          <label for="quizDesc">Short Description (Optional)</label>
+          <div class="textarea-wrap">
+            <textarea id="quizDesc" maxlength="250" placeholder="Enter short description about this quiz"></textarea>
+            <span class="char-counter"><span id="descCount">0</span>/250</span>
+          </div>
+        </div>
+
+        <div class="form-group full">
+          <label>Upload Quiz File (Word Document) <span class="req">*</span></label>
+          <div class="upload-drop" id="quizDrop" style="padding:34px 16px">
+            <div class="drop-default">
+              <i class="fa-solid fa-cloud-arrow-up" style="font-size:24px"></i>
+              <div style="margin-top:4px"><b>Click to upload</b> or drag and drop</div>
+              <span class="text-muted">DOC, DOCX (Max. 50MB)</span>
+            </div>
+            <input type="file" id="quizFileInput" accept=".doc,.docx">
+          </div>
+          <span class="field-error" id="quizFileError"></span>
+        </div>
+
+        <div class="info-banner" style="margin-top:0;margin-bottom:24px">
+          <i class="fa-regular fa-circle-question"></i>
+          <div class="ib-text">
+            <b>Only Word documents (.doc, .docx) are allowed.</b><br>
+            Make sure your file contains all the questions and instructions for students.
+          </div>
+        </div>
+
+        <div class="form-group full">
+          <label>Status <span class="req">*</span></label>
+          <div class="radio-option-grid">
+            <label class="radio-option">
+              <input type="radio" name="quizStatus" value="Published" checked>
+              <span class="radio-dot"></span>
+              <span class="ro-text">
+                <span class="ro-title">Published</span>
+                <span class="ro-desc">Make this quiz available to students</span>
+              </span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="quizStatus" value="Draft">
+              <span class="radio-dot"></span>
+              <span class="ro-text">
+                <span class="ro-title">Draft</span>
+                <span class="ro-desc">Save as draft and publish later</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-page-actions">
+          <a class="btn btn-outline" href="uploader-quizzes.html">Cancel</a>
+          <button type="submit" class="btn btn-primary">Upload Quiz</button>
+        </div>
+      </form>
+    </main>
+  </div>
+</div>
+
+<script src="assets/js/app.js"></script>
+<script src="assets/js/uploader-quiz-upload.js"></script>
+</body>
+</html>

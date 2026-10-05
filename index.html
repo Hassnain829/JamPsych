@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard — JamPsych LMS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo-circle"><img src="assets/images/jampsych-logo.png" alt="JamPsych LMS"></div>
+      <div class="brand-name">JamPsych LMS</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="nav-item active" href="index.html"><i class="fa-solid fa-chart-simple"></i> Dashboard</a>
+      <a class="nav-item" href="uploaders.html"><i class="fa-solid fa-user-tie"></i> Uploaders</a>
+      <a class="nav-item" href="certificates.html"><i class="fa-solid fa-award"></i> Certificates &amp; CEUs</a>
+
+      <div class="sidebar-divider"><span>Coming Soon</span></div>
+
+      <a class="nav-item" href="#"><i class="fa-solid fa-user-group"></i> Students</a>
+      <a class="nav-item" href="#"><i class="fa-solid fa-book-open"></i> Courses</a>
+      <a class="nav-item" href="#"><i class="fa-solid fa-chalkboard-user"></i> Workshops</a>
+      <a class="nav-item" href="#"><i class="fa-regular fa-file-lines"></i> Quizzes</a>
+      <a class="nav-item" href="#"><i class="fa-solid fa-cart-shopping"></i> Orders</a>
+      <a class="nav-item" href="#"><i class="fa-regular fa-credit-card"></i> Payment</a>
+      <a class="nav-item" href="#"><i class="fa-solid fa-gear"></i> Settings</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a class="nav-item" href="#" data-action="logout" data-silent><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+    </div>
+  </aside>
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <!-- ============ MAIN ============ -->
+  <div class="main">
+
+    <!-- Top bar -->
+    <header class="topbar">
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+
+      <div class="search-bar">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="globalSearch" placeholder="Search anything...">
+      </div>
+
+      <div class="topbar-actions">
+        <div class="profile-menu">
+          <button class="icon-btn" data-dropdown="notifPanel" aria-label="Notifications">
+            <i class="fa-regular fa-bell"></i><span class="badge">3</span>
+          </button>
+          <div class="dropdown-panel wide" id="notifPanel">
+            <div class="dd-title">Notifications</div>
+            <a class="dd-item" href="#" data-silent><i class="fa-solid fa-user-plus"></i><div><span class="t">New student registered</span><span class="s">John Smith · 2 mins ago</span></div></a>
+            <a class="dd-item" href="#" data-silent><i class="fa-solid fa-cart-shopping"></i><div><span class="t">New order #ORD-1250</span><span class="s">$30.00 · 35 mins ago</span></div></a>
+            <a class="dd-item" href="#" data-silent><i class="fa-solid fa-book-open"></i><div><span class="t">Course published</span><span class="s">The Impact of Spirituality on Therapy · 25 mins ago</span></div></a>
+            <div class="dd-footer">View all notifications</div>
+          </div>
+        </div>
+
+
+        <div class="profile-menu">
+          <button class="profile-trigger" data-role="admin" data-dropdown="profilePanel">
+            <span class="avatar-circle org-logo"><img src="assets/images/jampsych-logo.png" alt="JamPsych Society"></span>
+            <span>JamPsych Society</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="dropdown-panel" id="profilePanel">
+            <a class="dd-item" href="#" data-silent><i class="fa-regular fa-user"></i><div><span class="t">My profile</span></div></a>
+            <a class="dd-item" href="#" data-silent><i class="fa-solid fa-gear"></i><div><span class="t">Account settings</span></div></a>
+            <a class="dd-item" href="#" data-action="logout" data-silent><i class="fa-solid fa-right-from-bracket"></i><div><span class="t">Logout</span></div></a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page -->
+    <main class="page-content">
+
+      <div class="page-head">
+        <div>
+          <h1>Welcome back, Admin!</h1>
+          <p>Here's what's happening with your LMS today.</p>
+        </div>
+        <a class="btn btn-primary" href="uploaders.html?add=1"><i class="fa-solid fa-user-plus"></i> Add Uploader</a>
+      </div>
+
+      <!-- Main grid: stats + charts on the left, live feeds on the right -->
+      <section class="dash-layout">
+      <div class="dash-main">
+
+      <!-- Stat cards -->
+      <section class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-icon green"><i class="fa-solid fa-user-group"></i></div>
+          <div class="stat-info">
+            <div class="label">Total Students</div>
+            <div class="value">1,248</div>
+            <div class="trend"><i class="fa-solid fa-arrow-up"></i>12.5% <span class="text-muted">vs last month</span></div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon orange"><i class="fa-solid fa-user-tie"></i></div>
+          <div class="stat-info">
+            <div class="label">Total Uploaders</div>
+            <div class="value">18</div>
+            <div class="trend"><i class="fa-solid fa-arrow-up"></i>5.6% <span class="text-muted">vs last month</span></div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon blue"><i class="fa-solid fa-book-open"></i></div>
+          <div class="stat-info">
+            <div class="label">Total Courses</div>
+            <div class="value">96</div>
+            <div class="trend"><i class="fa-solid fa-arrow-up"></i>8.7% <span class="text-muted">vs last month</span></div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon tan"><i class="fa-solid fa-calendar-days"></i></div>
+          <div class="stat-info">
+            <div class="label">Total Workshops</div>
+            <div class="value">24</div>
+            <div class="trend"><i class="fa-solid fa-arrow-up"></i>14.3% <span class="text-muted">vs last month</span></div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon green"><i class="fa-regular fa-file-lines"></i></div>
+          <div class="stat-info">
+            <div class="label">Total Quizzes</div>
+            <div class="value">134</div>
+            <div class="trend"><i class="fa-solid fa-arrow-up"></i>10.1% <span class="text-muted">vs last month</span></div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon orange"><i class="fa-solid fa-receipt"></i></div>
+          <div class="stat-info">
+            <div class="label">Total Orders</div>
+            <div class="value">2,350</div>
+            <div class="trend"><i class="fa-solid fa-arrow-up"></i>15.8% <span class="text-muted">vs last month</span></div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon green"><i class="fa-solid fa-dollar-sign"></i></div>
+          <div class="stat-info">
+            <div class="label">Total Revenue</div>
+            <div class="value">$ 72,450</div>
+            <div class="trend"><i class="fa-solid fa-arrow-up"></i>18.6% <span class="text-muted">vs last month</span></div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon tan"><i class="fa-solid fa-award"></i></div>
+          <div class="stat-info">
+            <div class="label">Certificates Issued</div>
+            <div class="value">1,126</div>
+            <div class="trend"><i class="fa-solid fa-arrow-up"></i>11.4% <span class="text-muted">vs last month</span></div>
+          </div>
+        </div>
+      </section>
+
+          <div class="two-col">
+
+            <!-- Revenue -->
+            <div class="panel">
+              <div class="panel-head">
+                <h3>Revenue Overview</h3>
+                <select id="revenueRange" class="select-field" style="min-width:auto">
+                  <option value="month">This Month</option>
+                  <option value="lastMonth">Last Month</option>
+                  <option value="quarter">Last 3 Months</option>
+                  <option value="year">This Year</option>
+                </select>
+              </div>
+              <div class="chart-wrap" id="revenueChart"></div>
+            </div>
+
+            <!-- Orders by status -->
+            <div class="panel">
+              <div class="panel-head"><h3>Orders by Status</h3></div>
+              <div class="donut-area">
+                <div class="donut-canvas-wrap">
+                  <div class="donut-svg" id="ordersDonut"></div>
+                  <div class="donut-center">
+                    <span class="num">2,350</span>
+                    <span class="lbl">Total Orders</span>
+                  </div>
+                </div>
+                <div class="legend-list">
+                  <div class="legend-item">
+                    <span class="legend-dot" style="background:#1c9a5b"></span>
+                    <div>
+                      <div class="lname">Completed</div>
+                      <div><span class="lval">1,850</span><span class="lpct">(78.7%)</span></div>
+                    </div>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-dot" style="background:#e2a63c"></span>
+                    <div>
+                      <div class="lname">Pending</div>
+                      <div><span class="lval">320</span><span class="lpct">(13.6%)</span></div>
+                    </div>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-dot" style="background:#e0483f"></span>
+                    <div>
+                      <div class="lname">Failed</div>
+                      <div><span class="lval">120</span><span class="lpct">(5.1%)</span></div>
+                    </div>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-dot" style="background:#c7ccd4"></span>
+                    <div>
+                      <div class="lname">Refunded</div>
+                      <div><span class="lval">60</span><span class="lpct">(2.6%)</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent activities -->
+          <div class="panel">
+            <div class="panel-head">
+              <h3>Recent Activities</h3>
+              <a class="view-all" href="#">View All</a>
+            </div>
+
+            <div class="activity-row">
+              <div class="aicon"><i class="fa-solid fa-user-plus"></i></div>
+              <div class="atext">New student <b>John Smith</b> registered</div>
+              <div class="atime">2 mins ago</div>
+            </div>
+            <div class="activity-row">
+              <div class="aicon"><i class="fa-solid fa-book-open"></i></div>
+              <div class="atext">Course <b>"The Impact of Spirituality on Therapy"</b> has been published</div>
+              <div class="atime">25 mins ago</div>
+            </div>
+            <div class="activity-row">
+              <div class="aicon"><i class="fa-solid fa-cart-shopping"></i></div>
+              <div class="atext">New order <b>#ORD-1250</b> received from John Smith</div>
+              <div class="atime">35 mins ago</div>
+            </div>
+            <div class="activity-row">
+              <div class="aicon"><i class="fa-regular fa-file-lines"></i></div>
+              <div class="atext">Quiz submitted for <b>"Developing Healthy Parent Relationships"</b> by Sarah Brown</div>
+              <div class="atime">1 hour ago</div>
+            </div>
+            <div class="activity-row">
+              <div class="aicon"><i class="fa-solid fa-chalkboard-user"></i></div>
+              <div class="atext">Workshop <b>"Positive Discipline for Students"</b> has been published</div>
+              <div class="atime">2 hours ago</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right column -->
+        <aside class="dash-side">
+
+          <div class="panel">
+            <div class="panel-head">
+              <h3>Recent Orders</h3>
+              <a class="view-all" href="#">View All</a>
+            </div>
+
+            <div class="simple-list">
+              <div class="list-row">
+                <div class="avatar" style="background:#e6eefe;color:#3b82f6">JS</div>
+                <div class="rinfo">
+                  <div class="rsub">#ORD-1250</div>
+                  <div class="rtitle">John Smith</div>
+                  <div class="rsub">Course: The Power of Gratitude</div>
+                </div>
+                <div>
+                  <div class="ramount">$30.00</div>
+                  <span class="badge-status green" style="margin-top:6px">Completed</span>
+                </div>
+              </div>
+
+              <div class="list-row">
+                <div class="avatar" style="background:#fdf1de;color:#c98a3e">SB</div>
+                <div class="rinfo">
+                  <div class="rsub">#ORD-1249</div>
+                  <div class="rtitle">Sarah Brown</div>
+                  <div class="rsub">Workshop: Crisis Management</div>
+                </div>
+                <div>
+                  <div class="ramount">$50.00</div>
+                  <span class="badge-status green" style="margin-top:6px">Completed</span>
+                </div>
+              </div>
+
+              <div class="list-row">
+                <div class="avatar" style="background:#e7f5ee;color:#1c9a5b">ML</div>
+                <div class="rinfo">
+                  <div class="rsub">#ORD-1248</div>
+                  <div class="rtitle">Michael Lee</div>
+                  <div class="rsub">Course: Self-Compassion</div>
+                </div>
+                <div>
+                  <div class="ramount">$30.00</div>
+                  <span class="badge-status orange" style="margin-top:6px">Pending</span>
+                </div>
+              </div>
+
+              <div class="list-row">
+                <div class="avatar" style="background:#f3e8fd;color:#8b5cf6">DW</div>
+                <div class="rinfo">
+                  <div class="rsub">#ORD-1247</div>
+                  <div class="rtitle">David Wilson</div>
+                  <div class="rsub">Workshop: Positive Parenting</div>
+                </div>
+                <div>
+                  <div class="ramount">$50.00</div>
+                  <span class="badge-status green" style="margin-top:6px">Completed</span>
+                </div>
+              </div>
+
+              <div class="list-row">
+                <div class="avatar" style="background:#fdeceb;color:#e0483f">ED</div>
+                <div class="rinfo">
+                  <div class="rsub">#ORD-1246</div>
+                  <div class="rtitle">Emily Davis</div>
+                  <div class="rsub">Course: Growth Mindset</div>
+                </div>
+                <div>
+                  <div class="ramount">$30.00</div>
+                  <span class="badge-status red" style="margin-top:6px">Failed</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-head">
+              <h3>Recent Quiz Submissions</h3>
+              <a class="view-all" href="#">View All</a>
+            </div>
+
+            <div class="quiz-row">
+              <i class="fa-solid fa-circle-check status-ico ok"></i>
+              <div class="qinfo">
+                <div class="qtitle">The Science of Self-Compassion</div>
+                <div class="qsub">Submitted by: John Smith</div>
+              </div>
+              <div class="qtime">2 mins ago</div>
+            </div>
+            <div class="quiz-row">
+              <i class="fa-solid fa-circle-check status-ico ok"></i>
+              <div class="qinfo">
+                <div class="qtitle">Developing a Growth Mindset</div>
+                <div class="qsub">Submitted by: Sarah Brown</div>
+              </div>
+              <div class="qtime">1 hour ago</div>
+            </div>
+            <div class="quiz-row">
+              <i class="fa-solid fa-clock status-ico pending"></i>
+              <div class="qinfo">
+                <div class="qtitle">Crisis Management in Schools</div>
+                <div class="qsub">Submitted by: Michael Lee</div>
+              </div>
+              <div class="qtime">3 hours ago</div>
+            </div>
+            <div class="quiz-row">
+              <i class="fa-solid fa-circle-check status-ico ok"></i>
+              <div class="qinfo">
+                <div class="qtitle">Overcoming Procrastination</div>
+                <div class="qsub">Submitted by: Emily Davis</div>
+              </div>
+              <div class="qtime">5 hours ago</div>
+            </div>
+            <div class="quiz-row">
+              <i class="fa-solid fa-circle-check status-ico ok"></i>
+              <div class="qinfo">
+                <div class="qtitle">The Power of Gratitude</div>
+                <div class="qsub">Submitted by: David Wilson</div>
+              </div>
+              <div class="qtime">1 day ago</div>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </main>
+  </div>
+</div>
+
+<script src="assets/js/app.js"></script>
+<script src="assets/js/charts.js"></script>
+<script src="assets/js/dashboard.js"></script>
+</body>
+</html>

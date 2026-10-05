@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Quizzes — JamPsych Student</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo-circle"><img src="assets/images/jampsych-logo.png" alt="JamPsych LMS"></div>
+      <div class="brand-name">JamPsych LMS</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="nav-item" href="student-dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a>
+      <a class="nav-item" href="student-courses.html"><i class="fa-solid fa-book-open"></i> My Courses</a>
+      <a class="nav-item active" href="student-quizzes.html"><i class="fa-regular fa-file-lines"></i> My Quizzes</a>
+      <a class="nav-item" href="student-certificates.html"><i class="fa-solid fa-award"></i> Certificates &amp; CEUs</a>
+
+      <div class="sidebar-divider"><span>Coming Soon</span></div>
+
+      <a class="nav-item" href="#"><i class="fa-solid fa-chalkboard-user"></i> My Workshops</a>
+      <a class="nav-item" href="#"><i class="fa-regular fa-credit-card"></i> Payment</a>
+      <a class="nav-item" href="#"><i class="fa-solid fa-download"></i> Downloads</a>
+      <a class="nav-item" href="#"><i class="fa-regular fa-user"></i> Profile</a>
+      <a class="nav-item" href="#"><i class="fa-solid fa-gear"></i> Settings</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a class="nav-item" href="#" data-action="logout" data-silent><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+    </div>
+  </aside>
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <!-- ============ MAIN ============ -->
+  <div class="main">
+
+    <header class="topbar">
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+
+      <div class="search-bar">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="globalSearch" placeholder="Search for courses, quizzes, workshops...">
+      </div>
+
+      <div class="topbar-actions">
+        <div class="profile-menu">
+          <button class="icon-btn" data-dropdown="notifPanel" aria-label="Notifications">
+            <i class="fa-regular fa-bell"></i><span class="badge">3</span>
+          </button>
+          <div class="dropdown-panel wide" id="notifPanel">
+            <div class="dd-title">Notifications</div>
+            <a class="dd-item" href="#" data-silent><i class="fa-regular fa-clock"></i><div><span class="t">Quiz due soon</span><span class="s">"The Power of Gratitude Quiz" is due in 2 days</span></div></a>
+            <a class="dd-item" href="#" data-silent><i class="fa-solid fa-circle-check"></i><div><span class="t">Quiz graded</span><span class="s">"Mindfulness for Daily Life Quiz" scored 92%</span></div></a>
+            <div class="dd-footer">View all notifications</div>
+          </div>
+        </div>
+
+
+        <div class="profile-menu">
+          <button class="profile-trigger" data-role="student" data-dropdown="profilePanel">
+            <span class="avatar-circle">ED</span>
+            <span>Emily Davis</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="dropdown-panel" id="profilePanel">
+            <a class="dd-item" href="#" data-silent><i class="fa-regular fa-user"></i><div><span class="t">My profile</span></div></a>
+            <a class="dd-item" href="#" data-silent><i class="fa-solid fa-gear"></i><div><span class="t">Account settings</span></div></a>
+            <a class="dd-item" href="#" data-action="logout" data-silent><i class="fa-solid fa-right-from-bracket"></i><div><span class="t">Logout</span></div></a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-content">
+
+      <div class="page-head">
+        <div>
+          <h1>My Quizzes</h1>
+          <p>Download quizzes from your enrolled courses and upload your answers.</p>
+        </div>
+      </div>
+
+      <div class="panel panel-quizzes">
+        <div class="quizzes-toolbar">
+          <div class="tabs">
+            <button class="tab-item active" data-tab="all">All Quizzes</button>
+            <button class="tab-item" data-tab="submitted">Submitted</button>
+          </div>
+
+          <div class="quizzes-toolbar__filters">
+            <div class="search-input search-input--icon-end">
+              <input type="text" id="quizSearch" placeholder="Search quizzes...">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="filter-field">
+              <i class="fa-solid fa-filter"></i>
+              <select class="select-field" id="courseFilter"><option value="all">All Courses</option></select>
+              <i class="fa-solid fa-chevron-down filter-field__chev"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table class="data-table" id="allQuizzesTable">
+            <thead>
+              <tr>
+                <th>Quiz</th>
+                <th>Course</th>
+                <th>Uploaded On</th>
+                <th>Due Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="allQuizzesBody"></tbody>
+          </table>
+
+          <table class="data-table" id="submittedQuizzesTable" style="display:none">
+            <thead>
+              <tr>
+                <th>Quiz</th>
+                <th>Course</th>
+                <th>Submitted On</th>
+                <th>File</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="submittedQuizzesBody"></tbody>
+          </table>
+        </div>
+
+        <div class="table-footer">
+          <div class="showing" id="quizShowing"></div>
+          <div class="pagination" id="quizPagination"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- ============ UPLOAD ANSWER MODAL ============ -->
+<div class="modal-overlay" id="uploadAnswerModal">
+  <div class="modal-box" style="max-width:520px" role="dialog" aria-modal="true" aria-labelledby="uploadAnswerTitle">
+    <div class="modal-header">
+      <div>
+        <h2 id="uploadAnswerTitle">Upload Answer</h2>
+        <p id="uploadAnswerSubtitle">Upload your completed answer file for this quiz.</p>
+      </div>
+      <button class="modal-close" data-modal-close aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="upload-drop" id="answerDrop">
+        <div class="drop-default">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          Click to upload or drag and drop<br>
+          <span class="text-muted">DOC, DOCX, PDF (Max. 25MB)</span>
+        </div>
+        <input type="file" id="answerFileInput" accept=".doc,.docx,.pdf">
+      </div>
+      <span class="field-error" id="answerFileError"></span>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+      <button type="button" class="btn btn-primary" id="answerSubmitBtn">Submit Answer</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SUBMISSION PREVIEW MODAL ============ -->
+<div class="modal-overlay" id="quizViewModal">
+  <div class="modal-box" style="max-width:520px" role="dialog" aria-modal="true" aria-labelledby="quizViewTitle">
+    <div class="modal-header">
+      <div>
+        <h2 id="quizViewTitle">Submission Details</h2>
+        <p>Your submitted answer file for this quiz.</p>
+      </div>
+      <button class="modal-close" data-modal-close aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body" id="quizViewBody"></div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline" data-modal-close>Close</button>
+      <button type="button" class="btn btn-primary" id="quizViewDownload"><i class="fa-solid fa-download"></i> Download</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/app.js"></script>
+<script src="assets/js/student-data.js"></script>
+<script src="assets/js/student-quizzes.js"></script>
+</body>
+</html>

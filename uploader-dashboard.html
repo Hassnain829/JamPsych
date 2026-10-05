@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard — JamPsych Uploader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo-circle"><img src="assets/images/jampsych-logo.png" alt="JamPsych LMS"></div>
+      <div class="brand-name">JamPsych LMS</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="nav-item active" href="uploader-dashboard.html"><i class="fa-solid fa-chart-simple"></i> Dashboard</a>
+      <a class="nav-item" href="uploader-quizzes.html"><i class="fa-regular fa-file-lines"></i> Quizzes</a>
+      <a class="nav-item" href="uploader-submissions.html"><i class="fa-solid fa-upload"></i> Submissions</a>
+
+      <div class="sidebar-divider"><span>Coming Soon</span></div>
+
+      <a class="nav-item" href="#"><i class="fa-solid fa-book-open"></i> Courses</a>
+      <a class="nav-item" href="#"><i class="fa-solid fa-chalkboard-user"></i> Workshops</a>
+      <a class="nav-item" href="#"><i class="fa-regular fa-folder-open"></i> Materials</a>
+      <a class="nav-item" href="#"><i class="fa-regular fa-user"></i> Profile</a>
+      <a class="nav-item" href="#"><i class="fa-solid fa-gear"></i> Settings</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a class="nav-item" href="#" data-action="logout" data-silent><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+    </div>
+  </aside>
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <!-- ============ MAIN ============ -->
+  <div class="main">
+
+    <header class="topbar">
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+
+      <div class="search-bar">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="globalSearch" placeholder="Search anything...">
+      </div>
+
+      <div class="topbar-actions">
+        <div class="profile-menu">
+          <button class="icon-btn" data-dropdown="notifPanel" aria-label="Notifications">
+            <i class="fa-regular fa-bell"></i><span class="badge">3</span>
+          </button>
+          <div class="dropdown-panel wide" id="notifPanel">
+            <div class="dd-title">Notifications</div>
+            <a class="dd-item" href="#" data-silent><i class="fa-solid fa-upload"></i><div><span class="t">New submission received</span><span class="s">John Smith · The Science of Self-Compassion Quiz</span></div></a>
+            <a class="dd-item" href="#" data-silent><i class="fa-solid fa-circle-check"></i><div><span class="t">Course approved</span><span class="s">"Developing a Growth Mindset" is now published</span></div></a>
+            <a class="dd-item" href="#" data-silent><i class="fa-regular fa-clock"></i><div><span class="t">Draft reminder</span><span class="s">"The Power of Gratitude" is still a draft</span></div></a>
+            <div class="dd-footer">View all notifications</div>
+          </div>
+        </div>
+
+
+        <div class="profile-menu">
+          <button class="profile-trigger stacked" data-role="uploader" data-dropdown="profilePanel">
+            <span class="avatar-circle">KP</span>
+            <span class="ptext">
+              <span class="pname">Kerri-Ann Peart</span>
+              <span class="prole">Uploader</span>
+            </span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="dropdown-panel" id="profilePanel">
+            <a class="dd-item" href="#" data-silent><i class="fa-regular fa-user"></i><div><span class="t">My profile</span></div></a>
+            <a class="dd-item" href="#" data-silent><i class="fa-solid fa-gear"></i><div><span class="t">Account settings</span></div></a>
+            <a class="dd-item" href="#" data-action="logout" data-silent><i class="fa-solid fa-right-from-bracket"></i><div><span class="t">Logout</span></div></a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-content">
+
+      <div class="page-head">
+        <div>
+          <h1>Welcome back, Kerri-Ann!</h1>
+          <p>Here's what's happening with your content.</p>
+        </div>
+
+        <div class="btn-split-wrap">
+          <div class="btn-split">
+            <button class="btn btn-primary" data-modal-open="addContentModal">
+              <i class="fa-solid fa-plus"></i> Add New Content
+            </button>
+            <button class="btn btn-primary btn-caret" data-dropdown="quickAddPanel" aria-label="Choose content type">
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+          </div>
+          <div class="dropdown-panel" id="quickAddPanel">
+            <a class="dd-item" href="#" data-quick-add="course"><i class="fa-solid fa-book-open"></i><div><span class="t">New Course</span></div></a>
+            <a class="dd-item" href="#" data-quick-add="workshop"><i class="fa-solid fa-chalkboard-user"></i><div><span class="t">New Workshop</span></div></a>
+            <a class="dd-item" href="#" data-quick-add="quiz"><i class="fa-regular fa-file-lines"></i><div><span class="t">New Quiz</span></div></a>
+            <a class="dd-item" href="#" data-quick-add="material"><i class="fa-regular fa-folder-open"></i><div><span class="t">New Material</span></div></a>
+          </div>
+        </div>
+      </div>
+
+      <section class="uploader-dash">
+
+      <!-- Stat cards — full width -->
+      <section class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-icon green"><i class="fa-solid fa-book-open"></i></div>
+          <div class="stat-info">
+            <div class="label">Total Courses</div>
+            <div class="value" id="statCourses">18</div>
+            <a class="view-all-link" href="#" data-silent>View all</a>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon orange"><i class="fa-solid fa-calendar-days"></i></div>
+          <div class="stat-info">
+            <div class="label">Total Workshops</div>
+            <div class="value" id="statWorkshops">5</div>
+            <a class="view-all-link" href="#" data-silent>View all</a>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon blue"><i class="fa-regular fa-file-lines"></i></div>
+          <div class="stat-info">
+            <div class="label">Total Quizzes</div>
+            <div class="value" id="statQuizzes">12</div>
+            <a class="view-all-link" href="uploader-quizzes.html">View all</a>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon purple"><i class="fa-regular fa-folder-open"></i></div>
+          <div class="stat-info">
+            <div class="label">Total Materials</div>
+            <div class="value" id="statMaterials">36</div>
+            <a class="view-all-link" href="#" data-silent>View all</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Charts + recent content — three columns -->
+      <div class="uploader-mid-row">
+        <div class="panel">
+          <div class="panel-head">
+            <h3>Content Overview</h3>
+            <select id="contentRange" class="select-field" style="min-width:auto">
+              <option value="month">This Month</option>
+              <option value="lastMonth">Last Month</option>
+              <option value="year">This Year</option>
+            </select>
+          </div>
+          <div class="chart-wrap" id="contentChart"></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head"><h3>Content Breakdown</h3></div>
+          <div class="donut-area compact">
+            <div class="donut-canvas-wrap">
+              <div class="donut-svg" id="contentDonut"></div>
+              <div class="donut-center">
+                <span class="num" id="donutTotal">71</span>
+                <span class="lbl">Total</span>
+              </div>
+            </div>
+            <div class="legend-list" id="breakdownLegend"></div>
+          </div>
+        </div>
+
+        <div class="panel panel-recent">
+          <div class="panel-head">
+            <h3>Recent Content</h3>
+            <a class="view-all" href="#" data-silent>View All</a>
+          </div>
+          <div class="simple-list" id="recentContentList"></div>
+        </div>
+      </div>
+
+      <!-- Full-width bottom row -->
+      <div class="uploader-dash-bottom two-col even">
+            <!-- My recent courses -->
+            <div class="panel">
+              <div class="panel-head">
+                <h3>My Recent Courses</h3>
+                <a class="view-all" href="#" data-silent>View All</a>
+              </div>
+              <div class="simple-list" id="recentCoursesList"></div>
+            </div>
+
+            <!-- My recent workshops -->
+            <div class="panel">
+              <div class="panel-head">
+                <h3>My Recent Workshops</h3>
+                <a class="view-all" href="#" data-silent>View All</a>
+              </div>
+              <div class="simple-list" id="recentWorkshopsList"></div>
+            </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<!-- ============ ADD NEW CONTENT MODAL ============ -->
+<div class="modal-overlay" id="addContentModal">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="addContentTitle">
+    <div class="modal-header">
+      <div>
+        <h2 id="addContentTitle">Add New Content</h2>
+        <p>Upload new content for your learners.</p>
+      </div>
+      <button class="modal-close" data-modal-close aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <form id="addContentForm" novalidate>
+      <div class="modal-body">
+
+        <div class="form-group full" style="margin-bottom:18px">
+          <label>Content Type <span class="req">*</span></label>
+          <div class="content-type-grid">
+            <label class="content-type-card checked" data-type="course">
+              <input type="radio" name="contentType" value="course" checked>
+              <span class="ctc-check"><i class="fa-solid fa-check"></i></span>
+              <div class="ctc-icon green"><i class="fa-solid fa-book-open"></i></div>
+              <div class="ctc-title">Course</div>
+              <div class="ctc-desc">Create a new course with lessons and resources.</div>
+            </label>
+            <label class="content-type-card" data-type="workshop">
+              <input type="radio" name="contentType" value="workshop">
+              <span class="ctc-check"><i class="fa-solid fa-check"></i></span>
+              <div class="ctc-icon orange"><i class="fa-solid fa-chalkboard-user"></i></div>
+              <div class="ctc-title">Workshop</div>
+              <div class="ctc-desc">Create a workshop with interactive sessions.</div>
+            </label>
+            <label class="content-type-card" data-type="quiz">
+              <input type="radio" name="contentType" value="quiz">
+              <span class="ctc-check"><i class="fa-solid fa-check"></i></span>
+              <div class="ctc-icon blue"><i class="fa-regular fa-file-lines"></i></div>
+              <div class="ctc-title">Quiz</div>
+              <div class="ctc-desc">Create a quiz to test learner knowledge.</div>
+            </label>
+            <label class="content-type-card" data-type="material">
+              <input type="radio" name="contentType" value="material">
+              <span class="ctc-check"><i class="fa-solid fa-check"></i></span>
+              <div class="ctc-icon purple"><i class="fa-regular fa-folder-open"></i></div>
+              <div class="ctc-title">Material</div>
+              <div class="ctc-desc">Upload study material or additional resources.</div>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group full">
+          <label for="contentTitle">Title <span class="req">*</span></label>
+          <input type="text" id="contentTitle" placeholder="Enter content title">
+          <span class="field-error"></span>
+        </div>
+
+        <div class="form-group full">
+          <label for="contentDesc">Description <span class="req">*</span></label>
+          <textarea id="contentDesc" placeholder="Enter content description..."></textarea>
+          <span class="field-error"></span>
+        </div>
+
+        <div class="form-group full">
+          <label>Upload File <span class="req">*</span></label>
+          <div class="upload-drop" id="contentDrop">
+            <div class="drop-default">
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+              Click to upload or drag and drop<br>
+              <span class="text-muted">PDF, DOC, DOCX, PPT, PPTX (Max. 50MB)</span>
+            </div>
+            <input type="file" id="contentFileInput" accept=".pdf,.doc,.docx,.ppt,.pptx">
+          </div>
+          <span class="field-error" id="contentFileError"></span>
+        </div>
+
+        <div class="form-group full">
+          <label for="contentCategory">Category (Optional)</label>
+          <select id="contentCategory">
+            <option value="">Select category</option>
+            <option>Self-Compassion</option>
+            <option>Growth Mindset</option>
+            <option>Crisis Management</option>
+            <option>Positive Parenting</option>
+            <option>Mindfulness</option>
+            <option>Communication Skills</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="form-section-title mt">Payment Option</div>
+        <div class="form-group full">
+          <label>Pricing Model <span class="req">*</span></label>
+          <div class="radio-option-grid">
+            <label class="radio-option">
+              <input type="radio" name="pricing" value="free" checked>
+              <span class="radio-dot"></span>
+              <span class="ro-text">
+                <span class="ro-title">Free</span>
+                <span class="ro-desc">Make this content free for all learners</span>
+              </span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="pricing" value="paid">
+              <span class="radio-dot"></span>
+              <span class="ro-text">
+                <span class="ro-title">Paid</span>
+                <span class="ro-desc">Set a price for this content</span>
+              </span>
+            </label>
+          </div>
+          <div class="price-field" id="priceField">
+            <label for="contentPrice">Price (USD) <span class="req">*</span></label>
+            <div class="amount-input">
+              <span>$</span>
+              <input type="text" id="contentPrice" placeholder="Enter price" disabled>
+            </div>
+            <span class="field-error"></span>
+          </div>
+        </div>
+
+        <div class="form-group full" style="margin-top:20px">
+          <label>Visibility <span class="req">*</span></label>
+          <div class="radio-option-grid">
+            <label class="radio-option">
+              <input type="radio" name="visibility" value="published" checked>
+              <span class="radio-dot"></span>
+              <span class="ro-text">
+                <span class="ro-title">Published</span>
+                <span class="ro-desc">Make this content visible to learners</span>
+              </span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="visibility" value="draft">
+              <span class="radio-dot"></span>
+              <span class="ro-text">
+                <span class="ro-title">Draft</span>
+                <span class="ro-desc">Save as draft and publish later</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Content</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="assets/js/app.js"></script>
+<script src="assets/js/charts.js"></script>
+<script src="assets/js/uploader-dashboard.js"></script>
+</body>
+</html>

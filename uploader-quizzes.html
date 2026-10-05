@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quizzes — JamPsych Uploader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo-circle"><img src="assets/images/jampsych-logo.png" alt="JamPsych LMS"></div>
+      <div class="brand-name">JamPsych LMS</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="nav-item" href="uploader-dashboard.html"><i class="fa-solid fa-chart-simple"></i> Dashboard</a>
+      <a class="nav-item active" href="uploader-quizzes.html"><i class="fa-regular fa-file-lines"></i> Quizzes</a>
+      <a class="nav-item" href="uploader-submissions.html"><i class="fa-solid fa-upload"></i> Submissions</a>
+
+      <div class="sidebar-divider"><span>Coming Soon</span></div>
+
+      <a class="nav-item" href="#"><i class="fa-solid fa-book-open"></i> Courses</a>
+      <a class="nav-item" href="#"><i class="fa-solid fa-chalkboard-user"></i> Workshops</a>
+      <a class="nav-item" href="#"><i class="fa-regular fa-folder-open"></i> Materials</a>
+      <a class="nav-item" href="#"><i class="fa-regular fa-user"></i> Profile</a>
+      <a class="nav-item" href="#"><i class="fa-solid fa-gear"></i> Settings</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a class="nav-item" href="#" data-action="logout" data-silent><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+    </div>
+  </aside>
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <!-- ============ MAIN ============ -->
+  <div class="main">
+
+    <header class="topbar">
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+
+      <div class="search-bar">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="globalSearch" placeholder="Search anything...">
+      </div>
+
+      <div class="topbar-actions">
+        <div class="profile-menu">
+          <button class="icon-btn" data-dropdown="notifPanel" aria-label="Notifications">
+            <i class="fa-regular fa-bell"></i><span class="badge">3</span>
+          </button>
+          <div class="dropdown-panel wide" id="notifPanel">
+            <div class="dd-title">Notifications</div>
+            <a class="dd-item" href="#" data-silent><i class="fa-solid fa-upload"></i><div><span class="t">New submission received</span><span class="s">John Smith · The Science of Self-Compassion Quiz</span></div></a>
+            <a class="dd-item" href="#" data-silent><i class="fa-solid fa-circle-check"></i><div><span class="t">Quiz published</span><span class="s">"Crisis Management in Schools Quiz" is now live</span></div></a>
+            <a class="dd-item" href="#" data-silent><i class="fa-regular fa-clock"></i><div><span class="t">Draft reminder</span><span class="s">"Overcoming Procrastination Quiz" is still a draft</span></div></a>
+            <div class="dd-footer">View all notifications</div>
+          </div>
+        </div>
+
+
+        <div class="profile-menu">
+          <button class="profile-trigger stacked" data-role="uploader" data-dropdown="profilePanel">
+            <span class="avatar-circle">KP</span>
+            <span class="ptext">
+              <span class="pname">Kerri-Ann Peart</span>
+              <span class="prole">Uploader</span>
+            </span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="dropdown-panel" id="profilePanel">
+            <a class="dd-item" href="#" data-silent><i class="fa-regular fa-user"></i><div><span class="t">My profile</span></div></a>
+            <a class="dd-item" href="#" data-silent><i class="fa-solid fa-gear"></i><div><span class="t">Account settings</span></div></a>
+            <a class="dd-item" href="#" data-action="logout" data-silent><i class="fa-solid fa-right-from-bracket"></i><div><span class="t">Logout</span></div></a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-content">
+
+      <div class="page-head">
+        <div>
+          <h1>Quizzes</h1>
+          <p>Upload and manage quizzes for your learners.</p>
+        </div>
+        <a class="btn btn-primary" href="uploader-quiz-upload.html">
+          <i class="fa-solid fa-upload"></i> Add New Quiz
+        </a>
+      </div>
+
+      <div class="panel">
+        <div class="filters-bar">
+          <div class="search-input">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="quizSearch" placeholder="Search quizzes...">
+          </div>
+          <select class="select-field" id="courseFilter"><option value="all">All Courses</option></select>
+          <select class="select-field" id="statusFilter">
+            <option value="all">All Status</option>
+            <option value="published">Published</option>
+            <option value="draft">Draft</option>
+          </select>
+          <button class="btn btn-outline" id="resetFilters"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+        </div>
+
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Quiz Title</th>
+                <th>Course</th>
+                <th>File</th>
+                <th>Uploaded On</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="quizzesBody"></tbody>
+          </table>
+        </div>
+
+        <div class="table-footer">
+          <div class="showing" id="quizShowing"></div>
+          <div class="pagination" id="quizPagination"></div>
+        </div>
+      </div>
+
+      <div class="info-banner">
+        <i class="fa-regular fa-circle-question"></i>
+        <div class="ib-text">
+          Quizzes are uploaded as Word documents (.docx) and will be available for students to download.<br>
+          Make sure your file contains all the questions and instructions.
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- ============ QUIZ PREVIEW MODAL ============ -->
+<div class="modal-overlay" id="quizPreviewModal">
+  <div class="modal-box" style="max-width:520px" role="dialog" aria-modal="true" aria-labelledby="quizPreviewTitle">
+    <div class="modal-header">
+      <div>
+        <h2 id="quizPreviewTitle">Quiz Details</h2>
+        <p>Preview of this quiz's information.</p>
+      </div>
+      <button class="modal-close" data-modal-close aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body" id="quizPreviewBody"></div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline" data-modal-close>Close</button>
+      <button type="button" class="btn btn-primary" id="quizPreviewDownload"><i class="fa-solid fa-download"></i> Download</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/app.js"></script>
+<script src="assets/js/uploader-quizzes.js"></script>
+</body>
+</html>

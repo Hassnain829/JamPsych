@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Certificates &amp; CEUs — JamPsych LMS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo-circle"><img src="assets/images/jampsych-logo.png" alt="JamPsych LMS"></div>
+      <div class="brand-name">JamPsych LMS</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="nav-item" href="index.html"><i class="fa-solid fa-chart-simple"></i> Dashboard</a>
+      <a class="nav-item" href="uploaders.html"><i class="fa-solid fa-user-tie"></i> Uploaders</a>
+      <a class="nav-item active" href="certificates.html"><i class="fa-solid fa-award"></i> Certificates &amp; CEUs</a>
+
+      <div class="sidebar-divider"><span>Coming Soon</span></div>
+
+      <a class="nav-item" href="#"><i class="fa-solid fa-user-group"></i> Students</a>
+      <a class="nav-item" href="#"><i class="fa-solid fa-book-open"></i> Courses</a>
+      <a class="nav-item" href="#"><i class="fa-solid fa-chalkboard-user"></i> Workshops</a>
+      <a class="nav-item" href="#"><i class="fa-regular fa-file-lines"></i> Quizzes</a>
+      <a class="nav-item" href="#"><i class="fa-solid fa-cart-shopping"></i> Orders</a>
+      <a class="nav-item" href="#"><i class="fa-regular fa-credit-card"></i> Payment</a>
+      <a class="nav-item" href="#"><i class="fa-solid fa-gear"></i> Settings</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a class="nav-item" href="#" data-action="logout" data-silent><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+    </div>
+  </aside>
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <!-- ============ MAIN ============ -->
+  <div class="main">
+
+    <header class="topbar">
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+
+      <div class="search-bar">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="globalSearch" placeholder="Search anything...">
+      </div>
+
+      <div class="topbar-actions">
+        <div class="profile-menu">
+          <button class="icon-btn" data-dropdown="notifPanel" aria-label="Notifications">
+            <i class="fa-regular fa-bell"></i><span class="badge">3</span>
+          </button>
+          <div class="dropdown-panel wide" id="notifPanel">
+            <div class="dd-title">Notifications</div>
+            <a class="dd-item" href="#" data-silent><i class="fa-solid fa-award"></i><div><span class="t">Certificate issued</span><span class="s">Emily Davis · The Science of Self-Compassion</span></div></a>
+            <a class="dd-item" href="#" data-silent><i class="fa-solid fa-user-plus"></i><div><span class="t">New student registered</span><span class="s">John Smith · 2 mins ago</span></div></a>
+            <a class="dd-item" href="#" data-silent><i class="fa-solid fa-cart-shopping"></i><div><span class="t">New order #ORD-1250</span><span class="s">$30.00 · 35 mins ago</span></div></a>
+            <div class="dd-footer">View all notifications</div>
+          </div>
+        </div>
+
+
+        <div class="profile-menu">
+          <button class="profile-trigger" data-role="admin" data-dropdown="profilePanel">
+            <span class="avatar-circle org-logo"><img src="assets/images/jampsych-logo.png" alt="JamPsych Society"></span>
+            <span>JamPsych Society</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="dropdown-panel" id="profilePanel">
+            <a class="dd-item" href="#" data-silent><i class="fa-regular fa-user"></i><div><span class="t">My profile</span></div></a>
+            <a class="dd-item" href="#" data-silent><i class="fa-solid fa-gear"></i><div><span class="t">Account settings</span></div></a>
+            <a class="dd-item" href="#" data-action="logout" data-silent><i class="fa-solid fa-right-from-bracket"></i><div><span class="t">Logout</span></div></a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-content">
+
+      <div class="page-head">
+        <div>
+          <h1>Certificates &amp; CEUs</h1>
+          <p>View certificates and CEUs awarded to students after completing courses, managed by all uploaders.</p>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="panel" style="margin-bottom:18px">
+        <div class="filters-bar" style="margin-bottom:0">
+          <div class="search-input" style="max-width:320px">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="certSearch" placeholder="Search by student name or email...">
+          </div>
+          <select class="select-field" id="uploaderFilter"><option value="all">All Uploaders</option></select>
+          <select class="select-field" id="courseFilter"><option value="all">All Courses</option></select>
+          <select class="select-field" id="typeFilter"><option value="all">All Certificate Types</option></select>
+          <button class="btn btn-outline" id="resetFilters"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="panel">
+        <div class="table-wrap">
+          <table class="data-table" style="min-width:900px">
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>Course</th>
+                <th>Certificate Type</th>
+                <th>Issued On</th>
+                <th>Issued By</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="certificatesBody"></tbody>
+          </table>
+        </div>
+
+        <div class="table-footer">
+          <div class="showing" id="certShowing"></div>
+          <div class="pagination" id="certPagination"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- ============ CERTIFICATE PREVIEW MODAL ============ -->
+<div class="modal-overlay" id="certModal">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="certModalTitle">
+    <div class="modal-header">
+      <div>
+        <h2 id="certModalTitle">Certificate Preview</h2>
+        <p>Preview of the certificate awarded to the student.</p>
+      </div>
+      <button class="modal-close" data-modal-close aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div class="modal-body" id="certModalBody"></div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline" data-modal-close>Close</button>
+      <button type="button" class="btn btn-primary" id="certModalDownload">
+        <i class="fa-solid fa-download"></i> Download Certificate
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/app.js"></script>
+<script src="assets/js/certificates.js"></script>
+</body>
+</html>

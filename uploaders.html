@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Uploaders — JamPsych LMS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="logo-circle"><img src="assets/images/jampsych-logo.png" alt="JamPsych LMS"></div>
+      <div class="brand-name">JamPsych LMS</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="nav-item" href="index.html"><i class="fa-solid fa-chart-simple"></i> Dashboard</a>
+      <a class="nav-item active" href="uploaders.html"><i class="fa-solid fa-user-tie"></i> Uploaders</a>
+      <a class="nav-item" href="certificates.html"><i class="fa-solid fa-award"></i> Certificates &amp; CEUs</a>
+
+      <div class="sidebar-divider"><span>Coming Soon</span></div>
+
+      <a class="nav-item" href="#"><i class="fa-solid fa-user-group"></i> Students</a>
+      <a class="nav-item" href="#"><i class="fa-solid fa-book-open"></i> Courses</a>
+      <a class="nav-item" href="#"><i class="fa-solid fa-chalkboard-user"></i> Workshops</a>
+      <a class="nav-item" href="#"><i class="fa-regular fa-file-lines"></i> Quizzes</a>
+      <a class="nav-item" href="#"><i class="fa-solid fa-cart-shopping"></i> Orders</a>
+      <a class="nav-item" href="#"><i class="fa-regular fa-credit-card"></i> Payment</a>
+      <a class="nav-item" href="#"><i class="fa-solid fa-gear"></i> Settings</a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a class="nav-item" href="#" data-action="logout" data-silent><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+    </div>
+  </aside>
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+  <!-- ============ MAIN ============ -->
+  <div class="main">
+
+    <header class="topbar">
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+
+      <div class="search-bar">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="globalSearch" placeholder="Search anything...">
+      </div>
+
+      <div class="topbar-actions">
+        <div class="profile-menu">
+          <button class="icon-btn" data-dropdown="notifPanel" aria-label="Notifications">
+            <i class="fa-regular fa-bell"></i><span class="badge">3</span>
+          </button>
+          <div class="dropdown-panel wide" id="notifPanel">
+            <div class="dd-title">Notifications</div>
+            <a class="dd-item" href="#" data-silent><i class="fa-solid fa-user-plus"></i><div><span class="t">New student registered</span><span class="s">John Smith · 2 mins ago</span></div></a>
+            <a class="dd-item" href="#" data-silent><i class="fa-solid fa-cart-shopping"></i><div><span class="t">New order #ORD-1250</span><span class="s">$30.00 · 35 mins ago</span></div></a>
+            <a class="dd-item" href="#" data-silent><i class="fa-solid fa-book-open"></i><div><span class="t">Course published</span><span class="s">The Impact of Spirituality on Therapy · 25 mins ago</span></div></a>
+            <div class="dd-footer">View all notifications</div>
+          </div>
+        </div>
+
+
+        <div class="profile-menu">
+          <button class="profile-trigger" data-role="admin" data-dropdown="profilePanel">
+            <span class="avatar-circle org-logo"><img src="assets/images/jampsych-logo.png" alt="JamPsych Society"></span>
+            <span>JamPsych Society</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="dropdown-panel" id="profilePanel">
+            <a class="dd-item" href="#" data-silent><i class="fa-regular fa-user"></i><div><span class="t">My profile</span></div></a>
+            <a class="dd-item" href="#" data-silent><i class="fa-solid fa-gear"></i><div><span class="t">Account settings</span></div></a>
+            <a class="dd-item" href="#" data-action="logout" data-silent><i class="fa-solid fa-right-from-bracket"></i><div><span class="t">Logout</span></div></a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="page-content">
+
+      <div class="page-head">
+        <div>
+          <h1>Uploaders</h1>
+          <p>Manage all uploader accounts. View their content statistics and account status.</p>
+        </div>
+        <button class="btn btn-primary" data-modal-open="addUploaderModal">
+          <i class="fa-solid fa-plus"></i> Add Uploader
+        </button>
+      </div>
+
+      <div class="panel">
+        <div class="filters-bar">
+          <div class="search-input">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="uploaderSearch" placeholder="Search uploaders...">
+          </div>
+          <div class="spacer"></div>
+          <select class="select-field" id="statusFilter">
+            <option value="all">All Status</option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+          <button class="btn btn-outline" id="exportBtn"><i class="fa-solid fa-download"></i> Export</button>
+        </div>
+
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Uploader</th>
+                <th>Email</th>
+                <th>Content</th>
+                <th>Status</th>
+                <th>Date Added</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="uploadersBody"></tbody>
+          </table>
+        </div>
+
+        <div class="table-footer">
+          <div class="showing" id="showingLabel"></div>
+          <div class="pagination" id="pagination"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- ============ ADD UPLOADER MODAL ============ -->
+<div class="modal-overlay" id="addUploaderModal">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="addUploaderTitle">
+    <div class="modal-header">
+      <div>
+        <h2 id="addUploaderTitle">Add Uploader</h2>
+        <p>Create a new uploader account. They will be able to log in and upload courses, workshops, quizzes and materials.</p>
+      </div>
+      <button class="modal-close" data-modal-close aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <form id="addUploaderForm" novalidate>
+      <div class="modal-body">
+
+        <div class="form-section-title">Personal Information</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="fullName">Full Name <span class="req">*</span></label>
+            <input type="text" id="fullName" name="fullName" placeholder="Enter full name" autocomplete="off">
+            <span class="field-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="emailAddress">Email Address <span class="req">*</span></label>
+            <input type="email" id="emailAddress" name="email" placeholder="Enter email address" autocomplete="off">
+            <span class="field-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="tel" id="phoneNumber" name="phone" placeholder="Enter phone number" autocomplete="off">
+            <span class="field-error"></span>
+          </div>
+          <div class="form-group">
+            <label>Profile Picture</label>
+            <div class="upload-drop" id="avatarDrop">
+              <div class="drop-default">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                Click to upload or drag and drop<br>
+                <span class="text-muted">PNG, JPG or JPEG (Max. 2MB)</span>
+              </div>
+              <input type="file" id="avatarInput" accept="image/png,image/jpeg">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section-title mt">Account Information</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="password">Password <span class="req">*</span></label>
+            <div class="password-field">
+              <input type="password" id="password" name="password" placeholder="Enter password" autocomplete="new-password">
+              <button type="button" class="password-toggle" aria-label="Show password"><i class="fa-regular fa-eye"></i></button>
+            </div>
+            <span class="field-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password <span class="req">*</span></label>
+            <div class="password-field">
+              <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm password" autocomplete="new-password">
+              <button type="button" class="password-toggle" aria-label="Show password"><i class="fa-regular fa-eye"></i></button>
+            </div>
+            <span class="field-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="accountStatus">Status <span class="req">*</span></label>
+            <select id="accountStatus" name="status">
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+            <span class="field-error"></span>
+          </div>
+        </div>
+
+        <div class="form-section-title mt">Permissions</div>
+        <p class="text-muted" style="margin:-6px 0 14px;font-size:13px">
+          Uploader will be able to create and manage the following content.
+        </p>
+        <div class="permissions-grid">
+          <label class="perm-card">
+            <span class="perm-icon green"><i class="fa-solid fa-book-open"></i></span>
+            <span class="perm-label">Courses</span>
+            <input type="checkbox" value="Courses">
+            <span class="check-mark"><i class="fa-solid fa-check"></i></span>
+          </label>
+          <label class="perm-card">
+            <span class="perm-icon orange"><i class="fa-solid fa-calendar-days"></i></span>
+            <span class="perm-label">Workshops</span>
+            <input type="checkbox" value="Workshops">
+            <span class="check-mark"><i class="fa-solid fa-check"></i></span>
+          </label>
+          <label class="perm-card">
+            <span class="perm-icon blue"><i class="fa-regular fa-file-lines"></i></span>
+            <span class="perm-label">Quizzes</span>
+            <input type="checkbox" value="Quizzes">
+            <span class="check-mark"><i class="fa-solid fa-check"></i></span>
+          </label>
+          <label class="perm-card">
+            <span class="perm-icon purple"><i class="fa-regular fa-folder-open"></i></span>
+            <span class="perm-label">Materials</span>
+            <input type="checkbox" value="Materials">
+            <span class="check-mark"><i class="fa-solid fa-check"></i></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" data-modal-close>Cancel</button>
+        <button type="submit" class="btn btn-primary">Create Uploader</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="assets/js/app.js"></script>
+<script src="assets/js/uploaders.js"></script>
+</body>
+</html>
